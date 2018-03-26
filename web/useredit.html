@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>User creation</title>
+<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+	<h1>Create new user</h1>
+	User ID: <!-- Get next user ID somehow --> <br>
+	<form method="post">
+	Username <input type="text" name="username"><br>
+	First name <input type="text" name="firstname"><br>
+	Last name <input type="text" name="lastname"><br>
+	Role<br>
+	<input type="checkbox" name="admin" value="admin"> Administrator
+	<input type="checkbox" name="user" value="user"> User
+	<br>
+	Active?<br>
+	<input type="radio" name="active" value="yes"> Yes
+	<input type="radio" name="active" value="no"> No
+	<br>
+	<input type="submit">
+	</form>
+</body>
+</html>
