@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>User creation</title>
+<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+	<b>Menu</b>
+	<br>
+	<a href="useradmin.html">User administration</a> |
+	<a href="logout">Log out</a>
+	<br>
+
+	<div class="form" id="createuser">
+		<h1>Create new user</h1>
+		<label>ID:</label>
+		<!-- Get next user ID somehow -->
+		<br>
+		<form method="post">
+			<label for="firstname">First name: </label>
+			<input type="text" name="firstname" id="firstname"><br>
+			<label for="lastname">Last name: </label>
+			<input type="text" name="lastname" id="lastname"><br>
+			<label for="cpr">CPR: </label>
+			<input type="text" name="cpr" id="cpr"><br>
+			<label for="password">Password: </label>
+			<input type="text" name="paswword" id="password"><br>
+			<table>
+				<tr>
+					<th>Roles</th>
+					<th></th>
+				</tr>
+				<tr>
+					<td>Admin</td>
+					<td><input type="checkbox" name="admin" value="true"></td>
+				</tr>
+				<tr>
+					<td>Pharmacist</td>
+					<td><input type="checkbox" name="pharmacist" value="true"></td>
+				</tr>
+				<tr>
+					<td>Production Manager</td>
+					<td><input type="checkbox" name="prodman" value="true"></td>
+				</tr>
+				<tr>
+					<td>Laboratory Technician</td>
+					<td><input type="checkbox" name="labtech" value="true"></td>
+				</tr>
+			</table>
+
+			<label>Active?</label><br>
+			<input type="radio" name="active" value="yes">
+			<label>Yes</label>
+			<input type="radio" name="active" value="no">
+			<label>No</label><br>
+			<input type="submit">
+		</form>
+	</div>
+</body>
+</html>
