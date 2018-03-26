@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style type="text/css">
+  div.userdetails {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    grid-gap: 5px;
+  }
+  div.userdetails label.detailslabel {
+    text-align: right;
+  }
+  div.userdetails label.detailslabel:after {
+    content:": ";
+  }
+  
+</style>
+<title>Create user</title>
+</head>
+<body>
+<div class="userdetails">
+  <label class="emptylabel"></label>
+  <h2>Create user</h2>
+  <label class="detailslabel">User id</label>
+  <label>hard coded value 23 for now</label> 
+  
+  <label class="detailslabel">User name</label>
+  <input id="usernameid" type="text" name="username"/> 
+  
+  <label class="detailslabel">First name</label>
+  <input id="firstnameid" type="text" name="firstname"/> 
+  
+  <label class="detailslabel">Last name</label>
+  <input id="lastnameid" type="text" name="lastname"/> 
+  
+  <label class="detailslabel">Role</label>   
+  <div>
+    <input id="adminradioid" type="radio" name="usertype" value="administrator" checked/>
+    <label>Administrator</label>
+    <input id="userradioid" type="radio" name="usertype" value="user"/>
+    <label>User</label>
+  </div>
+  <label class="detailslabel">Active</label>   
+  <div>
+    <input id="yesactiveid" type="radio" name="activemode" value="yes" checked/>
+    <label>Yes</label>
+    <input id="noactiveid" type="radio" name="activemode" value="no"/>
+    <label>No</label>
+  </div>
+  <label class="emptylabel"></label>
+  <form>
+    <input id="submitdetailsid" type="submit" value="Save" onclick="onSaveClicked()"/>
+  </form>
+  <script>
+  class User{
+	  constructor(id, cpr, firstName, lastName, ini, roles, password){
+		this.id = id; this.cpr = cpr; 
+		this.firstName = firstName; this.lastName = lastName;
+		this.ini = ini; this.roles = roles; this.password = password;
+	  }
+	  id(){ return this.id;} id(id){ this.id = id;}
+	  cpr(){ return this.cpr;} cpr(cpr){ this.cpr = cpr;}
+	  firstName(){ return this.firstName;} firstName(firstName){ this.firstName = firstName;}
+	  lastName(){ return this.lastName;} lastName(lastName){ this.lastName = lastName;}
+	  ini(){ return this.ini;} ini(ini){ this.ini = ini;}
+	  roles(){ return this.roles;} roles(roles){ this.roles = roles;}
+	  password(){ return this.password;} password(password){ this.password = password;}
+  }  
+    //const username = document.getElementById("usernameid").innerHTML();
+    //const firstname = document.getElementById("firstnameid").innerHTML();
+    //const lastname = document.getElementById("lastnameid").innerHTML();
+    
+    let users = localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) : [];
+        
+    function onSaveClicked(){
+    	//var user = new User(username, firstname, lastname);
+    	var user2 = new User("testUserName", "TestFirstName", "TestLastName", "123", "231", "122", "223");
+    	//users.push(user);
+    	users.push(user2);
+    	localStorage.setItem("users", JSON.stringify(users));        	
+    }
+  </script>
+</div>
+</body>
+</html>

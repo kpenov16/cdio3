@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>User administration</title>
+<style>
+table, td, th {
+    border: 1px solid black;
+	border-collapse: collapse;
+	padding: 5px;
+}
+
+th {
+    text-align: left;
+}
+
+caption {
+    text-align: left;
+    font-size: 18px;
+}
+</style>
+</head>
+<body>
+<header><h5>Menu</h5></header>
+<nav>
+  <a href="admin.html">User administration</a> | 
+  <a href="index.html">Logout</a>
+</nav>
+<h3>User administration</h3>
+<form action="#createuser" method="get">
+	<a id="createuser" href="createuser.html">Create user</a>
+</form>
+<br />
+
+ 
+ <!-- 
+<table id="usershedertable">
+  <caption>Users:</caption>
+  <tr>
+    <th>id</th>
+    <th>cpr</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>ini</th>
+    <th>Roles</th>
+    <th>Password</th>
+  </tr>
+</table>
+--> 
+<table id="userstable">
+  <caption>Users:</caption>
+  <tr>
+    <th>id</th>
+    <th>cpr</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>ini</th>
+    <th>Roles</th>
+    <th>Password</th>
+  </tr>
+</table>
+
+<!--   <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr> -->
+<button onclick="localStorage.removeItem('users');">Delete</button>
+<button onclick="onUpdateClicked()">Update</button>
+  <script>
+	  class User{
+		  constructor(id, cpr, firstName, lastName, ini, roles, password){
+			this.id = id; this.cpr = cpr; 
+			this.firstName = firstName; this.lastName = lastName;
+			this.ini = ini; this.roles = roles; this.password = password;
+		  }
+		  id(){ return this.id;} id(id){ this.id = id;}
+		  cpr(){ return this.cpr;} cpr(cpr){ this.cpr = cpr;}
+		  firstName(){ return this.firstName;} firstName(firstName){ this.firstName = firstName;}
+		  lastName(){ return this.lastName;} lastName(lastName){ this.lastName = lastName;}
+		  ini(){ return this.ini;} ini(ini){ this.ini = ini;}
+		  roles(){ return this.roles;} roles(roles){ this.roles = roles;}
+		  password(){ return this.password;} password(password){ this.password = password;}
+	  }
+	  var i = 0;
+	 
+    function onUpdateClicked(){
+        let users = localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) : [];
+        
+    	var table = document.getElementById("userstable");
+    	var row = table.insertRow(-1); //(0)    	
+       	var cell01 = row.insertCell(0);
+       	var cell02 = row.insertCell(1);
+       	var cell03 = row.insertCell(2);
+       	var cell04 = row.insertCell(3);
+       	var cell05 = row.insertCell(4);
+       	var cell06 = row.insertCell(5);
+       	var cell07 = row.insertCell(6);
+
+       	cell01.innerHTML = users[0].id;//"id user" + i++;	
+    	cell02.innerHTML = users[0].cpr;	
+    	cell03.innerHTML = users[0].firstName;	    	
+       	cell04.innerHTML = users[0].lastName;	
+    	cell05.innerHTML = users[0].ini;	
+    	cell06.innerHTML = users[0].roles;	    	
+    	cell07.innerHTML = users[0].password;	    	
+    }
+    
+    
+  </script>
+<footer>
+  <p>Posted by: Kaloyan Penov</p>
+  <p>Contact information: <a href="mailto:s133967@student.dtu.dk"> s133967@student.dtu.dk</a>.</p>
+</footer>
+</body>
+</html>

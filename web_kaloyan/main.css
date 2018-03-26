@@ -1,0 +1,55 @@
+@CHARSET "UTF-8";
+  .logincontainer { 
+     width: 250px; clear: both; 
+  }
+   
+  .logincontainer input {	
+     width: 100%; clear: both; 
+  }
+  
+  body{
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;     
+  }
+  
+  h1 {
+    font-size: 36px;
+  }
+  
+  input[type=submit]:hover{
+    background-color: red;
+  }
+  
+  #usernameId, #passwordId, #submitId{
+    border: 2px solid gray;
+    border-radius: 5px;
+  }
+  
+  #frameId{
+    position: relative;
+    width: 400px;
+    height: 350px;
+    top: 200px;
+    left: 100px;
+    border: 2px solid gray;
+    border-radius: 10px;
+    box-shadow: 0px 10px 5px grey;
+  }
+  
+  #dtulogoId{
+    width: 80px;
+    height: auto;
+    position: fixed;
+    top: 160px;
+    left: 120px;
+  }  
+  
+  #innerframeId{
+    padding: 70px 0px 0px 100px;
+  }
+  
+  footer{
+    position: fixed;
+    bottom: 0;
+    left: 10px;
+  }    
+  
