@@ -6,21 +6,47 @@
 <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
+	<b>Menu</b>
+	<br>
+	<a href="useradmin.html">User administration</a> |
+	<a href="logout">Log out</a>
+	<br>
+
 	<h1>Create new user</h1>
-	User ID: <!-- Get next user ID somehow --> <br>
+	ID:
+	<!-- Get next user ID somehow -->
+	<br>
 	<form method="post">
-	Username <input type="text" name="username"><br>
-	First name <input type="text" name="firstname"><br>
-	Last name <input type="text" name="lastname"><br>
-	Role<br>
-	<input type="checkbox" name="admin" value="admin"> Administrator
-	<input type="checkbox" name="user" value="user"> User
-	<br>
-	Active?<br>
-	<input type="radio" name="active" value="yes"> Yes
-	<input type="radio" name="active" value="no"> No
-	<br>
-	<input type="submit">
+		First name: <input type="text" name="firstname"><br> Last
+		name: <input type="text" name="lastname"><br> CPR: <input
+			type="text" name="cpr"><br> Password: <input type="text"
+			name="paswword"><br>
+		<table>
+			<tr>
+				<th>Roles</th>
+				<th></th>
+			</tr>
+			<tr>
+				<td>Admin</td>
+				<td><input type="checkbox" name="admin" value="true"></td>
+			</tr>
+			<tr>
+				<td>Pharmacist</td>
+				<td><input type="checkbox" name="pharmacist" value="true"></td>
+			</tr>
+			<tr>
+				<td>Production Manager</td>
+				<td><input type="checkbox" name="prodman" value="true"></td>
+			</tr>
+			<tr>
+				<td>Laboratory Technician</td>
+				<td><input type="checkbox" name="labtech" value="true"></td>
+			</tr>
+		</table>
+
+		Active?<br> <input type="radio" name="active" value="yes">
+		Yes <input type="radio" name="active" value="no"> No <br>
+		<input type="submit">
 	</form>
 </body>
 </html>
