@@ -5,11 +5,39 @@ import java.util.List;
 public class UserDTO {
     public UserDTO(){}
     int userId;
+    String firstName;
+    String lastName;
     String userName;
     String ini;
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public boolean isActiveStatus() {
+        return activeStatus;
+    }
+
+    public void setActiveStatus(boolean activeStatus) {
+        this.activeStatus = activeStatus;
+    }
+
     String cpr;
     String password;
     List<String> roles;
+    boolean activeStatus;
 
     public int getUserId() {
         return userId;
