@@ -1,0 +1,53 @@
+@charset "UTF-8";
+body {
+	font-size: 100%;
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	background: url("dtu.bmp") no-repeat fixed top right;
+}
+
+h1 {
+	font-size: 3em;
+	
+}
+
+h2 {
+	font-size: 2em;
+	
+}
+
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	
+}
+
+th, td {
+	padding: 10px;
+	text-align: left;
+}
+
+tr:nth-child(even) {
+	background-color: #f0f0ff;
+}
+
+#loginbox {
+	width: 40%;
+	margin: auto;
+	border: 1px solid;
+	border-radius: 5px;
+	box-shadow: 5px 5px 10px;
+	text-align: center;
+}
+
+input[type=text] {
+    padding: 8px 14px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+input[type=submit] {
+	border-radius: 5px;
+	background-color: lightblue;
+}
