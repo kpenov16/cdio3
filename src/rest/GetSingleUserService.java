@@ -1,5 +1,7 @@
 package rest;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import data.UserDAO;
 
 import javax.ws.rs.GET;
@@ -15,7 +17,15 @@ public class GetSingleUserService {
 	public Response getUserByID(@PathParam("id") String id)
 	{
 		UserDAO curData = UserDAO.getInstance();
-		return Response.status(200).entity("getUserById is called. username:" + curData.getUser(Integer.parseInt(id)).getUserName()).build();
+		ObjectMapper objectMapper = new ObjectMapper();
+		String json = "";
+		try {
+			json = objectMapper.writeValueAsString(curData.getUser(Integer.parseInt(id)));
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+		return Response.status(200).entity("getUserById is called.  " + json).build();
 	}
 	
 }
