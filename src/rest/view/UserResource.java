@@ -89,6 +89,21 @@ public class UserResource {
 		return Response.ok().entity( new GenericEntity<List<User>>(users){} ).build();		
 	}
 	
+	
+	@DELETE
+	@Path("Id")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteUserById( final LogInViewModel vm ) {
+		System.out.format("User id: %s", vm.idUserToDelete);
+		User user = userRepository.deleteUserById(vm.idUserToDelete);
+		if(user == null) {
+			System.out.format("User id: %s was not deleted!", vm.idUserToDelete);
+		}		
+		//return Response.ok().build();
+		return Response.status(Status.OK).entity(user).build();
+	}
+	
 	@PUT
 	@Path("all")
 	@Consumes(MediaType.APPLICATION_JSON)

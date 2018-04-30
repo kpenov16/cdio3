@@ -1,10 +1,11 @@
 
 $(document).ready(function(){
 		
-	function LogInViewModel(username, password, users){
+	function LogInViewModel(username, password, users, idUserToDelete){
 			this.username = username 
 			this.password = password
 			this.users = users
+			this.idUserToDelete = idUserToDelete;
 	}
 	
 	function UserResponced(firstName,  lastName){
@@ -79,10 +80,15 @@ $(document).ready(function(){
 		 try {
 				var rowCount = $("#userstable > tbody").children().length;
 				//alert($("#userstable > tbody").children().eq(0).prop('nodeName'));//.prop('nodeName'));
-				for(var i = 1; i < rowCount; i++) {
+				for(var i = 1; i < rowCount; i++) {					
 					var $row = $("#userstable > tbody").children().eq(i);
 					var $chkbox = $row.find(".delChk");					
+					
 					if(null != $chkbox && true == $chkbox.is(":checked")) {						
+						
+						deleteUserById( Number( $row.find('#userId').text().replace(/\s/g,'') ) ) 
+						//alert("User with id: " + $row.find('#userId').text() + " was not deleted!");
+												
 						$("#userstable > tbody").children().eq(i).remove();
 						rowCount--;
 						i--;
@@ -91,6 +97,34 @@ $(document).ready(function(){
 		}catch(e) {
 			alert(e);
 		}
+	 }
+	 
+	 function deleteUserById( userId ){
+		 
+		 let savedLogins = localStorage.getItem("SAVED_LOGINS") ? JSON.parse( localStorage.getItem("SAVED_LOGINS") ) : [];
+		 var updateViewModel = new LogInViewModel(savedLogins[0].username, savedLogins[0].password);
+		 updateViewModel.idUserToDelete = userId;
+		 
+		 var vm = JSON.stringify( updateViewModel );
+		 
+		 //var deleted = false;
+		 
+		 $.ajax({
+				type : "DELETE", //"DELETE"
+				url : "http://localhost:8080/DynamicLoading/rest2/users/Id", //"http://localhost:8080/DynamicLoading/rest/login",
+				contentType : "application/json; charSet=UTF-8",
+				data : vm,
+				dataType : "json"
+			})			
+			.done(function(data){  //JSON, status, jqXHR){
+				alert(".done");
+				//deleted = true;
+			})			
+			.fail(function(data){
+				alert(".fail");
+			});
+		 
+		 //return deleted;
 	 }
 	 
 	 function updateUsers(){

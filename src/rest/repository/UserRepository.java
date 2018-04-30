@@ -21,4 +21,6 @@ public interface UserRepository {
 
 	List<User> updateUsers(ArrayList<User> users);
 
+	User deleteUserById(int userId);
+
 }

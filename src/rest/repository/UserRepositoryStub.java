@@ -2,9 +2,9 @@ package rest.repository;
 
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-import dto.UserDTO;
 import rest.model.User;
 import rest.model.UserRole;
 
@@ -91,6 +91,20 @@ public class UserRepositoryStub implements UserRepository {
 			}
 		}
 		return this.users;
+	}
+
+	@Override
+	public User deleteUserById(int userId) {
+		User user = null;
+		Iterator it = users.iterator();
+		while(it.hasNext()) {
+			user = (User)it.next();
+			if(userId == user.getId()) {
+				it.remove();
+				break;
+			}
+		}
+		return user;
 	}
 
 	
