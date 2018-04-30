@@ -51,4 +51,5 @@ public class UserDAO {
     public void deleteUser(int userId) {
         userDTOList.removeIf(o -> ((UserDTO) o).getUserId() == userId);
     }
+
 }

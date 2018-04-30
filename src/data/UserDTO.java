@@ -9,6 +9,10 @@ public class UserDTO {
     String lastName;
     String userName;
     String ini;
+    String cpr;
+    String password;
+    List<String> roles;
+    boolean activeStatus;
 
     public String getFirstName() {
         return firstName;
@@ -33,11 +37,6 @@ public class UserDTO {
     public void setActiveStatus(boolean activeStatus) {
         this.activeStatus = activeStatus;
     }
-
-    String cpr;
-    String password;
-    List<String> roles;
-    boolean activeStatus;
 
     public int getUserId() {
         return userId;
