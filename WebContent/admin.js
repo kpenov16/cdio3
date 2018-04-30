@@ -139,7 +139,7 @@ $(document).ready(function(){
 			user.role = new UserRole( $(this).find('#adminChk').is(':checked'),
 									  $(this).find('#leaderChk').is(':checked'),
 									  $(this).find('#pharmacistChk').is(':checked'),
-									  $(this).find('technicianChk').is(':checked') );  
+									  $(this).find('#technicianChk').is(':checked') );  
 			user.password = $(this).find('#userPassword').text();
 			users.push(user);
 		});
@@ -183,7 +183,7 @@ $(document).ready(function(){
 		    	var $tr = $("<tr/>");
 		    	$("#userstable > tbody:last").append($tr);
 		    	$('<td />', {class: 'Editable', id: 'userId' }).text( user.id ).appendTo($tr);
-		    	$('<td />', {id: 'isUserActive'}).append( $('<input />', {type: 'checkbox', value: 'Active', id: 'activeChk'}) ).appendTo( $tr );
+		    	$('<td />', {id: 'isUserActive'}).append( $('<input />', {type: 'checkbox', value: 'Active', id: 'activeChk'}).prop('checked', user.active) ).appendTo( $tr );
 		    	$('<td />', {class: 'Editable', id: 'userCpr' }).text( user.cpr ).appendTo($tr);
 		    	$('<td />', {class: 'Editable', id: 'userFirstName' }).text( user.firstName ).appendTo($tr);
 		    	$('<td />', {class: 'Editable', id: 'userLastName' }).text( user.lastName ).appendTo($tr);

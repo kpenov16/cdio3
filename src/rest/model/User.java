@@ -82,10 +82,10 @@ public class User{
 	}
 	public void setRole(UserRole role) {
 		this.role = role;
-	}	
-	public boolean isActive() {
+	}		
+	public boolean getActive() {
 		return active;
-	}
+	}	
 	public void setActive(boolean active) {
 		this.active = active;
 	}
@@ -95,7 +95,7 @@ public class User{
 		return String.format("%s %s", getFirstName(), getLastName());  
 	}
 	public void update(User user) {
-		this.setActive(user.isActive());
+		this.setActive(user.getActive());
 		this.setCpr(user.getCpr());
 		this.setFirstName(user.getFirstName());
 		this.setLastName(user.getLastName());

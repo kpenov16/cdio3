@@ -86,7 +86,7 @@ public class UserResource {
 		if(users==null || users.size()<=0) {
 			return Response.status(Status.NOT_FOUND).build();
 		}
-		return Response.ok().entity( new GenericEntity<List<User>>(users){} ).build();
+		return Response.ok().entity( new GenericEntity<List<User>>(users){} ).build();		
 	}
 	
 	@PUT
@@ -97,8 +97,8 @@ public class UserResource {
 		System.out.format("%s %s %b", vm.users[0].getFirstName(), vm.users[0].getLastName(), vm.users[0].getRole().isAdmin());
 		
 		List<User> users = userRepository.updateUsers( new ArrayList<User>(Arrays.asList(vm.users)) );
-		//I need to check if the update was ok or not and report that 
-		return Response.ok().entity(new GenericEntity<List<User>>(users){}).build();
+		//I need to check if the update was ok or not and report that
+		return Response.ok().entity(new GenericEntity<List<User>>(users){}).build();		
 	}
 	
 	@PUT
