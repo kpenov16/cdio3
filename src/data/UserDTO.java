@@ -4,6 +4,19 @@ import java.util.List;
 
 public class UserDTO {
     public UserDTO(){}
+
+    public UserDTO(int userId, String firstName, String lastName, String userName, String ini, String cpr, String password, List<String> roles, boolean activeStatus) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.ini = ini;
+        this.cpr = cpr;
+        this.password = password;
+        this.roles = roles;
+        this.activeStatus = activeStatus;
+    }
+
     int userId;
     String firstName;
     String lastName;
