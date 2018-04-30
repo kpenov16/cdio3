@@ -128,8 +128,8 @@ $(document).ready(function(){
 	 }
 	 
 	 function updateUsers(){
-		 let savedLogins = localStorage.getItem("SAVED_LOGINS") ? JSON.parse( localStorage.getItem("SAVED_LOGINS") ) : [];
-			
+			let savedLogins = localStorage.getItem("SAVED_LOGINS") ? JSON.parse( localStorage.getItem("SAVED_LOGINS") ) : [];
+				
 			alert( "username: " + savedLogins[0].username + " password" + savedLogins[0].password );
 	        
 			var updateViewModel = new LogInViewModel(savedLogins[0].username, savedLogins[0].password)

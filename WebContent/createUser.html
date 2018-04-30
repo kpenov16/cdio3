@@ -9,39 +9,57 @@
 </head>
 <body>
 <div class="userdetails">
-	  <label class="emptylabel"></label>
-	  <h2>Create user</h2>
-	  <label class="detailslabel">User id</label>
-	  <label>hard coded value 23 for now</label> 
-	  
-	  <label class="detailslabel">User name</label>
-	  <input id="usernameid" type="text" name="username"/> 
-	  
-	  <label class="detailslabel">First name</label>
-	  <input id="firstnameid" type="text" name="firstname"/> 
-	  
-	  <label class="detailslabel">Last name</label>
-	  <input id="lastnameid" type="text" name="lastname"/> 
-	  
-	  <label class="detailslabel">Role</label>   
-	  <div>
+  <label class="emptylabel"></label>
+  <h2>Create user</h2>
+  <label class="detailslabel">User id</label>
+  <input id="useridid" type="number" min="0" name="userid"/>
+  
+  <label class="detailslabel">First name</label>
+  <input id="firstnameid" type="text" name="firstname"/> 
+  
+  <label class="detailslabel">Last name</label>
+  <input id="lastnameid" type="text" name="lastname"/>
+  
+  <label class="detailslabel">Initials</label>
+  <input id="initialsid" type="text" name="initials"/>
+  
+  <label class="detailslabel">Cpr</label>
+  <input id="cprid" type="text" name="cpr"/>
+   
+  <label class="detailslabel">User name</label>
+  <input id="usernameid" type="text" name="username"/>
+  
+  <label class="detailslabel">Password</label>
+  <input id="passwordid" type="text" name="password"/>
+  
+  <label class="detailslabel">Roles</label>  
+  <div class='mutliSelect'>
+  	<input type='checkbox' value='Admin' id='adminChk'/><label>Admin |</label>  
+  	<input type='checkbox' value='Leader' id='leaderChk'/><label>Leader |</label><br>
+  	<input type='checkbox' value='Pharmacist' id='pharmacistChk'/><label>Pharmacist |</label> 
+  	<input type='checkbox' value='Technician' id='technicianChk'/><label>Technician |</label> 
+  </div>
+  <label class="detailslabel">Active </label>
+  <div>
+	  <input type='checkbox' value='Active' id='activeChk'/>
+  </div>
+  <label class="emptylabel"></label>
+  <button id="saveID">Save</button>
+</div>
+</body>
+</html>
+<!--  <div>
 	    <input id="adminradioid" type="radio" name="usertype" value="administrator" checked/>
 	    <label>Administrator</label>
 	    <input id="userradioid" type="radio" name="usertype" value="user"/>
 	    <label>User</label>
-	  </div>
-	  <label class="detailslabel">Active</label>   
-	  <div>
+	  </div>  -->
+<!--  <div>
 	    <input id="yesactiveid" type="radio" name="activemode" value="yes" checked/>
 	    <label>Yes</label>
 	    <input id="noactiveid" type="radio" name="activemode" value="no"/>
 	    <label>No</label>
-	  </div>
-	  <label class="emptylabel"></label>
+	  </div> -->	  
 	  <!-- <form>
 	    <input id="saveID" type="submit" value="Save"/>
 	  </form> -->	  
-	  <button id="saveID">Save</button>
-</div>
-</body>
-</html>

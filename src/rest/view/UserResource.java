@@ -117,6 +117,18 @@ public class UserResource {
 	}
 	
 	@PUT
+	@Path("newUsers")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response addUsers(final LogInViewModel vm) {
+		System.out.format("%s %s %b", vm.users[0].getFirstName(), vm.users[0].getLastName(), vm.users[0].getRole().isAdmin());
+		
+		List<User> users = userRepository.addUsers( new ArrayList<User>(Arrays.asList(vm.users)) );
+		//I need to check if the addition was ok or not and report that
+		return Response.ok().entity(new GenericEntity<List<User>>(users){}).build();		
+	}
+	
+	@PUT
 	@Path("{userId}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)

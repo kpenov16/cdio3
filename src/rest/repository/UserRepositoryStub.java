@@ -107,6 +107,22 @@ public class UserRepositoryStub implements UserRepository {
 		return user;
 	}
 
+	@Override
+	public List<User> addUsers(ArrayList<User> usersToAdd) {		
+		for(User userToAdd : usersToAdd) { //I know I can do it faster
+			boolean matchedId = false;
+			for(User user : this.users) {
+				if( userToAdd.getId() == user.getId()) {
+					matchedId = true;
+				}
+			}
+			if(!matchedId) {
+				users.add(userToAdd);				
+			}
+		}
+		return this.users;
+	}
+
 	
 	
 }
