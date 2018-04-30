@@ -43,7 +43,7 @@ public class UserDTO {
         this.lastName = lastName;
     }
 
-    public boolean isActiveStatus() {
+    public boolean isActive() {
         return activeStatus;
     }
 
@@ -97,5 +97,20 @@ public class UserDTO {
 
     public void setRoles(List<String> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "userId=" + userId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", ini='" + ini + '\'' +
+                ", cpr='" + cpr + '\'' +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
+                ", activeStatus=" + activeStatus +
+                '}';
     }
 }

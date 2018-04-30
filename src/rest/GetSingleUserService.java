@@ -3,6 +3,7 @@ package rest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import data.UserDAO;
+import data.UserDTO;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -17,10 +18,12 @@ public class GetSingleUserService {
 	public Response getUserByID(@PathParam("id") String id)
 	{
 		UserDAO curData = UserDAO.getInstance();
+		UserDTO curUser = curData.getUser(Integer.parseInt(id));
 		ObjectMapper objectMapper = new ObjectMapper();
 		String json = "";
 		try {
-			json = objectMapper.writeValueAsString(curData.getUser(Integer.parseInt(id)));
+			json = objectMapper.writeValueAsString(curUser);
+			System.out.println(curUser);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}

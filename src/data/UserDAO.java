@@ -46,11 +46,14 @@ public class UserDAO {
     public void createUser(UserDTO user) {
         UserDTO tempUser = new UserDTO();
         tempUser.setUserId(user.getUserId());
+        tempUser.setFirstName(user.getFirstName());
+        tempUser.setLastName(user.getLastName());
         tempUser.setIni(user.getIni());
         tempUser.setRoles(user.getRoles());
         tempUser.setUserName(user.getUserName());
         tempUser.setCpr(user.getCpr());
         tempUser.setPassword(user.getPassword());
+        tempUser.setActiveStatus(user.isActive());
         userDTOList.add(tempUser);
     }
 
