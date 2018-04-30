@@ -4,7 +4,17 @@ import java.util.Iterator;
 import java.util.List;
 
 public class UserDAO {
-    List<UserDTO> userDTOList;
+    private List<UserDTO> userDTOList;
+    private static UserDAO instance;
+
+    private UserDAO(){}
+
+    public static UserDAO getInstance(){
+        if(instance == null){
+            instance = new UserDAO();
+        }
+        return instance;
+    }
 
     public List<UserDTO> getUserDTOList() {
         return userDTOList;
