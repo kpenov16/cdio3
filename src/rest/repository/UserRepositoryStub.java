@@ -10,7 +10,20 @@ import rest.model.UserRole;
 
 public class UserRepositoryStub implements UserRepository {
 	private List<User> users = new ArrayList<>();
-	
+	private static UserRepositoryStub instance;
+
+	private UserRepositoryStub() {
+		users.add( new User(1, "Pernille","Larsen", "pl", "0000-12345", "321", true, new UserRole(true,true,false,false)) );
+		users.add( new User(2, "Emma", "Birkelund", "eb", "0001-12345", "123", true, new UserRole(true,true,false,false)) );
+	}
+
+	public static UserRepository getInstance(){
+		if(instance == null){
+			instance = new UserRepositoryStub();
+		}
+		return instance;
+	}
+
 	@Override
 	public void delete(String userId) {
 		//delete from User where userId == db.User.userId ...
@@ -25,8 +38,6 @@ public class UserRepositoryStub implements UserRepository {
 		//users.add(new User("Pernille", "Larsen"));
 		//users.add(new User("Emma", "Larsen"));
 		
-		users.add( new User(1, "Pernille","Larsen", "pl", "0000-12345", "321", true, new UserRole(true,true,false,false)) );
-		users.add( new User(2, "Emma", "Birkelund", "eb", "0001-12345", "123", true, new UserRole(true,true,false,false)) );
 		return users;
 	}
 

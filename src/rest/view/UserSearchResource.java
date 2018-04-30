@@ -18,7 +18,7 @@ import rest.repository.UserRepositoryStub;
 @Path("search/users")
 public class UserSearchResource {
 
-	private UserRepository userRepository = new UserRepositoryStub();
+	private UserRepository userRepository = UserRepositoryStub.getInstance();
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)

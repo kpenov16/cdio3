@@ -24,7 +24,7 @@ import rest.repository.UserRepositoryStub;
 
 @Path("users")
 public class UserResource {
-	private UserRepository userRepository = new UserRepositoryStub();
+	private UserRepository userRepository = UserRepositoryStub.getInstance();
 	
 	@DELETE
 	@Path("{userId}")
