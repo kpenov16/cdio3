@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Insert title here</title>
+  <link rel="stylesheet" type="text/css" href="admin.css" /> 
+  <script src="jquery-3.3.1.js"></script>
+  <script src="admin.js"></script>
+</head>
+<body>
+<header><h5>Menu</h5></header>
+	<nav>
+	  <a class="AdminLink" href="javascript:void(0)">User administration</a> <!-- href="javascript:void(0)"  admin.html --> 
+	  <a class="LogOutLink" href="javascript:void(0)">Logout</a>
+	  <!-- <a href="index.html">Logout</a> -->
+	</nav>
+	<h3>User administration</h3>
+	<!-- <form action="#createuser" method="get"> -->
+	<!--	<a id="createUserID" class="CreateUserLink" href="javascript:void(0)">Create user</a> -->		
+	<!-- </form> -->
+	<!-- <a id="createUserID" class="CreateUserLink">Create user</a> -->
+	<button id="createUserID">Create user</button>
+	<br />		 
+	<table id="userstable">
+	  <caption>Users:</caption>
+	  <tr>
+	    <th>id</th>
+	    <th>active</th>
+	    <th>cpr</th>
+	    <th>First Name</th>
+	    <th>Last Name</th>
+	    <th>ini</th>
+	    <th>Roles</th>
+	    <th>Password</th>
+	    <th>To delete</th>
+	  </tr>
+	</table>	
+	<button id="deleteId">Delete</button> 
+	<button id="updateID">Update</button>
+	<!-- <button onclick="localStorage.removeItem('users');">Delete</button> -->	  
+	<footer>
+	  <p>Posted by: Kaloyan Penov</p>
+	  <p>Contact information: <a href="mailto:s133967@student.dtu.dk"> s133967@student.dtu.dk</a>.</p>
+	</footer>
+</body>
+</html>

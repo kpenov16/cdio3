@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Insert title here</title>
+  <link rel="stylesheet" type="text/css" href="createUser.css" /> 
+  <script src="jquery-3.3.1.js"></script>
+  <script src="createUser.js"></script>
+</head>
+<body>
+<div class="userdetails">
+	  <label class="emptylabel"></label>
+	  <h2>Create user</h2>
+	  <label class="detailslabel">User id</label>
+	  <label>hard coded value 23 for now</label> 
+	  
+	  <label class="detailslabel">User name</label>
+	  <input id="usernameid" type="text" name="username"/> 
+	  
+	  <label class="detailslabel">First name</label>
+	  <input id="firstnameid" type="text" name="firstname"/> 
+	  
+	  <label class="detailslabel">Last name</label>
+	  <input id="lastnameid" type="text" name="lastname"/> 
+	  
+	  <label class="detailslabel">Role</label>   
+	  <div>
+	    <input id="adminradioid" type="radio" name="usertype" value="administrator" checked/>
+	    <label>Administrator</label>
+	    <input id="userradioid" type="radio" name="usertype" value="user"/>
+	    <label>User</label>
+	  </div>
+	  <label class="detailslabel">Active</label>   
+	  <div>
+	    <input id="yesactiveid" type="radio" name="activemode" value="yes" checked/>
+	    <label>Yes</label>
+	    <input id="noactiveid" type="radio" name="activemode" value="no"/>
+	    <label>No</label>
+	  </div>
+	  <label class="emptylabel"></label>
+	  <!-- <form>
+	    <input id="saveID" type="submit" value="Save"/>
+	  </form> -->	  
+	  <button id="saveID">Save</button>
+</div>
+</body>
+</html>

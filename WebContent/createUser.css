@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+ div.userdetails {
+   display: grid;
+   grid-template-columns: max-content max-content;
+   grid-gap: 5px;
+ }
+ div.userdetails label.detailslabel {
+   text-align: right;
+ }
+ div.userdetails label.detailslabel:after {
+   content:": ";
+ }
