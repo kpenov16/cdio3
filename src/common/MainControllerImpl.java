@@ -21,8 +21,8 @@ public class MainControllerImpl implements MainController {
 	private void loadData(String path){			
 		try {
 			dao = new UserDAO(path);//"data.bin");
-			dao.createUser(new UserDTO( 1, "Pernille","Larsen", "pl", "0000-12345", "321", true, new UserRole(true,true,false,false) ));
-			dao.createUser(new UserDTO( 2, "Emma", "Birkelund", "eb", "0001-12345", "123", true, new UserRole(true,true,false,false) ));		
+			dao.createUser(new UserDTO( 1, "Pernille","Larsen", "pl", "0000-12345", "Avatar","321", true, new UserRole(true,true,false,false) ));
+			dao.createUser(new UserDTO( 2, "Emma", "Birkelund", "eb", "0001-12345", "Ninja","123", true, new UserRole(true,true,false,false) ));		
 		} catch (DALException e) {
 			e.printStackTrace();			
 		}finally {

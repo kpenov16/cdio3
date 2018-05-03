@@ -27,7 +27,7 @@ $(document).ready(function(){
 		  username(){ return this.username;} username(username){ this.username = username;}
 		  password(){ return this.password;} password(password){ this.password = password;}
 	}  	
-	class User{
+	/*class User{
 		  constructor(id, cpr, firstName, lastName, initials, password, role, active){
 			this.id = id; this.cpr = cpr; 
 			this.firstName = firstName; this.lastName = lastName;
@@ -40,6 +40,23 @@ $(document).ready(function(){
 		  lastName(){ return this.lastName;} lastName(lastName){ this.lastName = lastName;}
 		  initials(){ return this.initials;} initials(initials){ this.initials = initials;}		  
 		  password(){ return this.password;} password(password){ this.password = password;}
+		  active(){ return this.active;} active(active){ this.active = active;}
+	 }*/
+	 class User{
+		  constructor(id, cpr, firstName, lastName, initials, userName, password, active, role){
+			this.id = id; this.cpr = cpr; 
+			this.firstName = firstName; this.lastName = lastName;
+			this.initials = initials; this.userName = userName; this.password = password;
+			this.role = role; this.active = active; 
+		  }
+		  id(){ return this.id;} id(id){ this.id = id;}
+		  cpr(){ return this.cpr;} cpr(cpr){ this.cpr = cpr;}
+		  firstName(){ return this.firstName;} firstName(firstName){ this.firstName = firstName;}
+		  lastName(){ return this.lastName;} lastName(lastName){ this.lastName = lastName;}
+		  initials(){ return this.initials;} initials(initials){ this.initials = initials;}
+		  userName(){ return this.userName;} userName(userName){ this.userName = userName;}
+		  password(){ return this.password;} password(password){ this.password = password;}
+		  role(){ return this.role;} role(role){ this.role = role;}
 		  active(){ return this.active;} active(active){ this.active = active;}
 	 }
 	 class UserRole{
@@ -117,11 +134,13 @@ $(document).ready(function(){
 				dataType : "json"
 			})			
 			.done(function(data){  //JSON, status, jqXHR){
-				alert(".done");
+				alert("The users were deleted");
+				//alert(".done");
 				//deleted = true;
 			})			
 			.fail(function(data){
-				alert(".fail");
+				alert("error: The users were NOT deleted");
+				//alert(".fail");
 			});
 		 
 		 //return deleted;
@@ -130,7 +149,7 @@ $(document).ready(function(){
 	 function updateUsers(){
 			let savedLogins = localStorage.getItem("SAVED_LOGINS") ? JSON.parse( localStorage.getItem("SAVED_LOGINS") ) : [];
 				
-			alert( "username: " + savedLogins[0].username + " password" + savedLogins[0].password );
+			//alert( "username: " + savedLogins[0].username + " password" + savedLogins[0].password );
 	        
 			var updateViewModel = new LogInViewModel(savedLogins[0].username, savedLogins[0].password)
 			
@@ -146,12 +165,14 @@ $(document).ready(function(){
 				dataType : "json"
 			})			
 			.done(function(data){  //JSON, status, jqXHR){
-				alert(".done");
+				alert("The users were updated.");
+				//alert(".done");
 				//populateTable(data);
 				//$(".Editable").makeEditable();
 			})			
 			.fail(function(data){
-				alert(".fail");
+				alert("error: The users were NOT updated.");
+				//alert(".fail");
 			});
 	     
 	 }
@@ -173,7 +194,8 @@ $(document).ready(function(){
 			user.role = new UserRole( $(this).find('#adminChk').is(':checked'),
 									  $(this).find('#leaderChk').is(':checked'),
 									  $(this).find('#pharmacistChk').is(':checked'),
-									  $(this).find('#technicianChk').is(':checked') );  
+									  $(this).find('#technicianChk').is(':checked') );
+			user.userName = $(this).find('#userName').text();
 			user.password = $(this).find('#userPassword').text();
 			users.push(user);
 		});
@@ -190,7 +212,7 @@ $(document).ready(function(){
 	 function loadUsers(){		 
 		let savedLogins = localStorage.getItem("SAVED_LOGINS") ? JSON.parse( localStorage.getItem("SAVED_LOGINS") ) : [];
 		
-		alert( savedLogins[0].username + " " + savedLogins[0].password );
+		//alert( savedLogins[0].username + " " + savedLogins[0].password );
         
 		var vm = JSON.stringify( new LogInViewModel(savedLogins[0].username, savedLogins[0].password) );
 		
@@ -202,18 +224,20 @@ $(document).ready(function(){
 			dataType : "json"
 		})			
 		.done(function(data){  //JSON, status, jqXHR){
-			alert(".done");
+			//alert("All users where loaded.");
+			//alert(".done");
 			populateTable(data);
 			$(".Editable").makeEditable();
 		})			
 		.fail(function(data){
-			alert(".fail");
+			alert("error: Users were NOT loaded.");
+			//alert(".fail");
 		});
      }
 	 
 	 function populateTable(data){		    
 		    data.forEach(function(user, index){ //data.users.forEach(function(user, index){
-		    	alert(user.role.admin + " " + user.role.technician);
+		    	//alert(user.role.admin + " " + user.role.technician);
 		    	var $tr = $("<tr/>");
 		    	$("#userstable > tbody:last").append($tr);
 		    	$('<td />', {class: 'Editable', id: 'userId' }).text( user.id ).appendTo($tr);
@@ -230,6 +254,7 @@ $(document).ready(function(){
 		    					$('<input />', {type: 'checkbox', value: 'Technician', id: 'technicianChk'}).prop('checked', user.role.technician ), $('<label />').html('Technician |')
 		    				) 
 		    			).appendTo( $tr );
+		    	$('<td />', {class: 'Editable', id: 'userName' }).text( user.userName ).appendTo($tr);
 		    	$('<td />', {class: 'Editable', id: 'userPassword' }).text( user.password ).appendTo($tr);
 		    	$('<td />').append( $('<input />', {class: 'delChk', name: 'chk', type: 'checkbox'}) ).appendTo( $tr );		    	
 		    			    	
@@ -250,9 +275,9 @@ $(document).ready(function(){
 		          $(this).trigger('closeEditable');
 		        },
 		        'keyup':function(e){
-		          if(e.which == '13'){ // enter
+		          if(e.which == '13'){ // 13 is enter
 		            $(this).trigger('saveEditable');
-		          } else if(e.which == '27'){ // escape
+		          } else if(e.which == '27'){ //27 is escape
 		            $(this).trigger('closeEditable');
 		          }
 		        },

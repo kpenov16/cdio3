@@ -64,7 +64,7 @@ public class LoginService {
 		for(UserDTO user : usersAsDTO) {			
 			parsedUsers.add(
 					new User(user.getId(), user.getFirstName(), user.getLastName(), 
-							 user.getInitials(), user.getCpr(), user.getPassword(), 
+							 user.getInitials(), user.getCpr(), user.getUserName(), user.getPassword(), 
 							 user.isActive(), new UserRole(
 									 			user.getUserRole().isAdmin(), user.getUserRole().isLeader(), 
 									 			user.getUserRole().isPharmacist(), user.getUserRole().isTechnician()

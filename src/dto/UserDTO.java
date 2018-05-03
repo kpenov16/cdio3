@@ -13,19 +13,21 @@ public class UserDTO implements Serializable, Cloneable, Comparable<UserDTO>{
 	private String lastName = "";
 	private String initials = "";
 	private String cpr = "";
+	private String userName = "";
 	private String password = "";
 	private UserRole userRole = null;
 	private boolean active = false;
 	
 	public UserDTO() {	}
 	public UserDTO(int id, String firstName, String lastName, 
-				   String initials, String cpr, 
+				   String initials, String cpr, String userName,
 				   String password, boolean active, UserRole role) {
 		setId(id);
 		setFirstName(firstName);
 		setLastName(lastName);
 		setInitials(initials);
 		setCpr(cpr);
+		setUserName(userName);
 		setPassword(password);
 		setActive(active);
 		setUserRole(role);
@@ -65,6 +67,13 @@ public class UserDTO implements Serializable, Cloneable, Comparable<UserDTO>{
 	}	
 	public void setCpr(String cpr) {
 		this.cpr = cpr;
+	}
+	
+	public String getUserName() {
+		return userName;		
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;		
 	}
 	
 	public String getPassword() {
@@ -115,7 +124,7 @@ public class UserDTO implements Serializable, Cloneable, Comparable<UserDTO>{
 	
 	@Override
 	public UserDTO clone() {
-	   return new UserDTO(getId(), getFirstName(), getLastName(), getInitials(), cpr, password, isActive(), getUserRole().clone()); 
+	   return new UserDTO(getId(), getFirstName(), getLastName(), getInitials(), cpr, getUserName(), password, isActive(), getUserRole().clone()); 
 	}
 	
 	public void Update(UserDTO user) {

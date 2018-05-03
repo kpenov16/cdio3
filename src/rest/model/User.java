@@ -1,8 +1,5 @@
 package rest.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -11,33 +8,45 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User{
 	
-	private int	id = 0;                     
+	private int id = 0;                     
 	private String firstName = ""; 
 	private String lastName = "";
 	private String initials = "";
 	private String cpr = "";
+	private String userName = "";	
 	private String password = "";	
 	private UserRole role = null;
 	private boolean active = false;
 	
 	public User() {
-		this(-1,"","","","","", false, new UserRole());
+		this(-1,"","","","","","", false, new UserRole());
 	}	
 	public User(String firstName, String lastName) {
-		this(-1, firstName, lastName, "", "", "", false, new UserRole());
+		this(-1, firstName, lastName, "", "", "", "", false, new UserRole());
 	}	
 	public User(int id, String firstName, String lastName, 
 				   String initials, String cpr, 
-				   String password,  boolean active, UserRole role) {
+				   String userName, String password,  
+				   boolean active, UserRole role) {
 		setId(id);
+		//this.id++; //I don't have the time to change all the project right now, but do that to remind myself that is important to do
 		setFirstName(firstName);
 		setLastName(lastName);
 		setInitials(initials);
 		setCpr(cpr);
+		setUserName(userName);
 		setPassword(password);
 		setRole(role);
-		setActive(active);
+		setActive(active);		
 	}
+	
+	
+	public String getUserName() {
+		return userName;		
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;		
+	}	
 	
 	public String getPassword() {
 		return password;		
@@ -100,7 +109,33 @@ public class User{
 		this.setFirstName(user.getFirstName());
 		this.setLastName(user.getLastName());
 		this.setInitials(user.getInitials());
+		this.setUserName(user.getUserName());
 		this.setPassword(user.getPassword());
 		this.setRole(user.getRole());
 	}
+	
+	public void updateSkipUserName(User user) {
+		this.setActive(user.getActive());
+		this.setCpr(user.getCpr());
+		this.setFirstName(user.getFirstName());
+		this.setLastName(user.getLastName());
+		this.setInitials(user.getInitials());
+		//this.setUserName(user.getUserName());
+		this.setPassword(user.getPassword());
+		this.setRole(user.getRole());
+	}
+	
+	public boolean userNameIsNullOrEmpty() {
+		return getUserName() == null || getUserName().trim().isEmpty(); 
+	}
+	
+	public boolean hasEqualUserName(User user) {
+		return this.getUserName().trim().toLowerCase()
+				   .equals( user.getUserName().trim().toLowerCase() );
+	}
+	
+	public boolean hasEqualId(User user) {
+		return this.getId() == user.getId();
+	}
+	
 }

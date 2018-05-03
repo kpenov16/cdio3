@@ -26,6 +26,68 @@ import rest.repository.UserRepositoryStub;
 public class UserResource {
 	private UserRepository userRepository = UserRepositoryStub.getInstance();
 	
+	@POST
+	@Path("all")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getUsers(final LogInViewModel vm) {
+		
+		System.out.format("%s %s", vm.username, vm.password);
+		
+		List<User> users = userRepository.getAllUsers();
+	
+		if(users==null || users.size()<=0) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		return Response.ok().entity( new GenericEntity<List<User>>(users){} ).build();		
+	}
+	
+	@PUT
+	@Path("all")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateUsers(final LogInViewModel vm) {
+		System.out.format("%s %s %b", vm.users[0].getFirstName(), vm.users[0].getLastName(), vm.users[0].getRole().isAdmin());
+		
+		List<User> users = userRepository.updateUsers( new ArrayList<User>(Arrays.asList(vm.users)) );
+		//I need to check if the update was ok or not and report that
+		return Response.ok().entity(new GenericEntity<List<User>>(users){}).build();		
+	}
+	
+	@DELETE
+	@Path("Id")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteUserById( final LogInViewModel vm ) {
+		System.out.format("User id: %s", vm.idUserToDelete);
+		User user = userRepository.deleteUserById(vm.idUserToDelete);
+		if(user == null) {
+			System.out.format("User id: %s was not deleted!", vm.idUserToDelete);
+		}		
+		//return Response.ok().build();
+		return Response.status(Status.OK).entity(user).build();
+	}
+	
+	@PUT
+	@Path("newUsers")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response addUsers(final LogInViewModel vm) {
+		System.out.format("%s %s %b", vm.users[0].getFirstName(), vm.users[0].getLastName(), vm.users[0].getRole().isAdmin());
+		
+		List<User> users = userRepository.addUsers( new ArrayList<User>(Arrays.asList(vm.users)) );
+		
+		if( users == null ) {
+			return Response.status(Status.BAD_REQUEST).entity("Invalid User Name! Already taken or empty!").build();
+		}
+		
+		//I need to check if the addition was ok or not and report that
+		return Response.ok().entity(new GenericEntity<List<User>>(users){}).build();		
+	}
+	
+	
+	/* 
+	//uncomment this block to run simple unit tests
 	@DELETE
 	@Path("{userId}")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -72,61 +134,6 @@ public class UserResource {
 		
 		return user;
 	}
-
-	@POST
-	@Path("all")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getUsers(final LogInViewModel vm) {
-		
-		System.out.format("%s %s", vm.username, vm.password);
-		
-		List<User> users = userRepository.getAllUsers();
-	
-		if(users==null || users.size()<=0) {
-			return Response.status(Status.NOT_FOUND).build();
-		}
-		return Response.ok().entity( new GenericEntity<List<User>>(users){} ).build();		
-	}
-	
-	
-	@DELETE
-	@Path("Id")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response deleteUserById( final LogInViewModel vm ) {
-		System.out.format("User id: %s", vm.idUserToDelete);
-		User user = userRepository.deleteUserById(vm.idUserToDelete);
-		if(user == null) {
-			System.out.format("User id: %s was not deleted!", vm.idUserToDelete);
-		}		
-		//return Response.ok().build();
-		return Response.status(Status.OK).entity(user).build();
-	}
-	
-	@PUT
-	@Path("all")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response updateUsers(final LogInViewModel vm) {
-		System.out.format("%s %s %b", vm.users[0].getFirstName(), vm.users[0].getLastName(), vm.users[0].getRole().isAdmin());
-		
-		List<User> users = userRepository.updateUsers( new ArrayList<User>(Arrays.asList(vm.users)) );
-		//I need to check if the update was ok or not and report that
-		return Response.ok().entity(new GenericEntity<List<User>>(users){}).build();		
-	}
-	
-	@PUT
-	@Path("newUsers")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response addUsers(final LogInViewModel vm) {
-		System.out.format("%s %s %b", vm.users[0].getFirstName(), vm.users[0].getLastName(), vm.users[0].getRole().isAdmin());
-		
-		List<User> users = userRepository.addUsers( new ArrayList<User>(Arrays.asList(vm.users)) );
-		//I need to check if the addition was ok or not and report that
-		return Response.ok().entity(new GenericEntity<List<User>>(users){}).build();		
-	}
 	
 	@PUT
 	@Path("{userId}")
@@ -139,6 +146,9 @@ public class UserResource {
 		
 		return Response.ok().entity(user).build();
 	}
+	
+	*/
+	
 }
 
 /*

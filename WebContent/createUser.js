@@ -1,16 +1,17 @@
 $(document).ready(function(){
 	class User{
-		  constructor(id, cpr, firstName, lastName, initials, password, active, role){
+		  constructor(id, cpr, firstName, lastName, initials, userName, password, active, role){
 			this.id = id; this.cpr = cpr; 
 			this.firstName = firstName; this.lastName = lastName;
-			this.initials = initials; this.password = password;
+			this.initials = initials; this.userName = userName; this.password = password;
 			this.role = role; this.active = active; 
 		  }
 		  id(){ return this.id;} id(id){ this.id = id;}
 		  cpr(){ return this.cpr;} cpr(cpr){ this.cpr = cpr;}
 		  firstName(){ return this.firstName;} firstName(firstName){ this.firstName = firstName;}
 		  lastName(){ return this.lastName;} lastName(lastName){ this.lastName = lastName;}
-		  initials(){ return this.initials;} initials(initials){ this.initials = initials;}		  
+		  initials(){ return this.initials;} initials(initials){ this.initials = initials;}
+		  userName(){ return this.userName;} userName(userName){ this.userName = userName;}
 		  password(){ return this.password;} password(password){ this.password = password;}
 		  role(){ return this.role;} role(role){ this.role = role;}
 		  active(){ return this.active;} active(active){ this.active = active;}
@@ -49,7 +50,7 @@ $(document).ready(function(){
 		
     	let savedLogins = localStorage.getItem("SAVED_LOGINS") ? JSON.parse( localStorage.getItem("SAVED_LOGINS") ) : [];
 		
-		alert( "username: " + savedLogins[0].username + " password" + savedLogins[0].password );
+		//alert( "username: " + savedLogins[0].username + " password" + savedLogins[0].password );
         
 		var updateViewModel = new LogInViewModel(savedLogins[0].username, savedLogins[0].password)
 
@@ -66,10 +67,15 @@ $(document).ready(function(){
 			dataType : "json"
 		})			
 		.done(function(data){  //JSON, status, jqXHR){
-			alert(".done");
+			alert("The user was created.");
+			//alert(".done");
 		})			
-		.fail(function(data){
-			alert(".fail");
+		.fail(function(jqXHR, status, thrownError){
+			//var msg = $.parseJSON(jqXHR.responseText);
+			alert("status: "+status+". The user was NOT created. Reason: " + jqXHR.responseText);
+			
+			
+			//alert(".fail");
 		}); 
     	
     	$("html").parent().find("#maincontainer").load("admin.html");
@@ -81,6 +87,7 @@ $(document).ready(function(){
 						 $('.userdetails').find('#firstnameid').val(),
 						 $('.userdetails').find('#lastnameid').val(),
 						 $('.userdetails').find('#initialsid').val(),
+						 $('.userdetails').find('#usernameid').val(),
 						 $('.userdetails').find('#passwordid').val(),
 						 $('.userdetails').find('#activeChk').is(':checked'),
 						 new UserRole( $('.mutliSelect').find('#adminChk').is(':checked'),
